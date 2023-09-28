@@ -34,10 +34,10 @@ public class ChatController {
     }
 
     @MessageMapping("/private-message")
-    public ResponseEntity<String> recMessage(@Payload Message message) {
+    public Message recMessage(@Payload Message message) {
         logger.info("Executed private");
         chatService.forwardMessage(message);
-        return new ResponseEntity<>("Message sent to " + message.getReceiverName(), HttpStatus.OK);
+        return message;
     }
 
     @MessageMapping("/join-group")
